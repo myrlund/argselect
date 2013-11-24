@@ -1,7 +1,9 @@
 argselect
 =========
 
-> A simple implementation of `argmax` and `argmin` in Python.
+A simple implementation of `argmax` and `argmin` in Python.
+
+It differs from most other built-in implementations in that it returns all arguments yielding a max/min result.
 
 Example run
 -----------
