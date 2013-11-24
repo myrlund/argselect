@@ -1,25 +1,8 @@
 
 def argselect(fn, params, result_selector_fn):
-    """
-    Returns the params selected by result_selector_fn, after applying fn.
-    """
-    
-    # Apply fn to param set
-    param_set = set(params)
-    results = map(fn, param_set)
-    
-    # Select desired result
-    selected_result = result_selector_fn(results)
-    
-    # Get the list indices matching the selected result
-    filtered_results = filter(lambda item: item[1] == selected_result, enumerate(results))
-    relevant_indices = map(lambda item: item[0], filtered_results)
-    
-    # Get the corresponding params
-    params_with_indices = filter(lambda item: item[0] in relevant_indices, enumerate(param_set))
-    params = map(lambda item: item[1], params_with_indices)
-    
-    return params
+    items = [(fn(p), p) for p in set(params)]
+    result = result_selector_fn(map(lambda item: item[0], items))
+    return map(lambda item: item[1], filter(lambda item: item[0] == result, items))
 
 def argmax(fn, params):
     """
