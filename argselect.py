@@ -1,5 +1,7 @@
-
 def argselect(fn, params, result_selector_fn):
+    """
+    Returns the params selected by result_selector_fn, after applying fn.
+    """
     items = [(fn(p), p) for p in set(params)]
     result = result_selector_fn(map(lambda item: item[0], items))
     return map(lambda item: item[1], filter(lambda item: item[0] == result, items))
